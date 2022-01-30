@@ -16,8 +16,8 @@ h1
     height: 0px
     width: 0px
     padding: 50px
-    top: -40%
-    left: -10%
+    top: -30%
+    left: -15%
     border-radius: 100%
 
 #round .char 
@@ -28,6 +28,50 @@ h1
     display: inline-block
     transform-origin: 50% 100%
     border: 0px solid red
+
+$width: 150px
+$height: 150px
+$borderSize: 5px
+$borderRadius: 100px
+
+.card
+    width: $width
+    height: $height
+    position: relative
+    z-index: 2
+    border-radius: $borderRadius
+    top: -30%
+    left: -10%
+
+    .content
+        width: 100%
+        height: 100%
+        background-color: $second
+        border-radius: $borderRadius - $borderSize
+
+    &::before, &::after
+        content: ""
+        width: $width + $borderSize*2
+        height: $height + $borderSize*2
+        display: block
+        position: absolute
+        z-index: -1
+        border-radius: $borderRadius
+        background-image: linear-gradient(45deg, $ciRed, $ciBlue)
+        background-size: 100% 300%
+        background-position: center center
+        top: -$borderSize
+        left: -$borderSize
+        animation: spin 3000ms infinite alternate
+
+    &::after
+        filter: blur($width/2)
+
+@keyframes spin
+    0%
+        background-position: top center
+    100%
+        background-position: bottom center
 
 
 #warped 
